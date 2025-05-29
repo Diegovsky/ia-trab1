@@ -1,0 +1,9 @@
+[project]
+name = "trab1"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "pandas>=2.2.3",
+    "pydantic>=2.11.5",
+    "scikit-learn>=1.6.1",
+]
