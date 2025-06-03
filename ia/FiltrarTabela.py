@@ -25,7 +25,6 @@ colunas_escolhidas = [
     "Genres",
     "Tags",
 ]
-minimo_reviews = 500
 
 # ler arquivo csv
 df = pd.read_csv(input_file, index_col=False)
@@ -40,6 +39,7 @@ print(f"Colunas escolhidas: {colunas_escolhidas}")
 df_fil["Total Reviews"] = df_fil["Positive"] + df_fil["Negative"]
 
 # remove jogos com menos de 500 reviews
+minimo_reviews = 500
 df_fil = df_fil[df_fil["Total Reviews"] >= minimo_reviews]
 print()
 print(f"Incluindo apenas jogos com mais de {minimo_reviews} reviews")

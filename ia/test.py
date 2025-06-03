@@ -4,7 +4,6 @@ import json
 import pandas as pd
 from ia.common import EntryTest
 from datetime import datetime
-from sklearn.preprocessing import MultiLabelBinarizer
 
 os.chdir("dados")
 
@@ -29,7 +28,6 @@ def transformar_entryout(entry: dict) -> pd.DataFrame:
 
     # Variáveis base
     base = {
-        "owners": entry["owners"],
         "price": entry["price"],
         "release_year": release_year,
         "release_month": release_month,
@@ -69,5 +67,5 @@ if __name__ == "__main__":
     print(entry)
 
     df = transformar_entryout(entry)
-    pred = modelo.predict(df)
+    pred = modelo.predict(df) * 100
     print(f"Predição do steam_score: {pred[0]:.2f}")

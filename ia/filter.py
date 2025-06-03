@@ -53,7 +53,7 @@ def agg(field_name: str):
     conj: dict[str, int] = {}
     next_num = 0
     for entry in outs.values():
-        tags: list[str] = entry[field_name]
+        tags: list[str] = [k.lower() for k in entry[field_name]]
         out_tags = []
         for tag in tags:
             if tag not in conj:
@@ -62,13 +62,13 @@ def agg(field_name: str):
 
             out_tags.append(conj[tag])
 
-        entry[field_name] = out_tags
+        entry[field_name] = sorted(out_tags)
 
     with open(f"{field_name}.json", "w") as f:
         # {"a": 10} -> [("a", 10)] -> [(10, "a")]
         o = list((v, k) for k, v in conj.items())
         o.sort()
-        r = [tag for num, tag in o]
+        r = o
         json.dump(r, f)
 
 
